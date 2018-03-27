@@ -14,7 +14,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h2>Guess what letter I'm thinking of: <span id="answer"><strong>###</strong></span></h2>
+          <h2>Guess what letter I'm thinking of <span id="user-choice"><strong> </strong></span></h2>
         </div>
       </div>
       <div class="row">
@@ -46,60 +46,38 @@
       // If the player guesses the correct letter before the chances run out, they earn a win
       // If the player does not guess the correct letter, then they earn a loss 
 
-      var guessesRemaining, wins, losses, answer, computerChoices;
+      var guessText, guessesRemaining, wins, losses, answer;
 
+          guessText = document.getElementById("guess-choice");
           guessesRemaining = 9;
-          wins = 0;
-          losses = 0;
+          wins = 3;
+          losses = 3;
           answer = randomLetter();
-          computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-          var userText = document.getElementById("guess-choice");
-
 
     document.onkeyup = function(event) {
-      userText.textContent = event.key;
+      guessText.textContent = event.key;
     };
-
-    // // Writes the Variables to the page
+    
+    // Writes the Variables to the page
     document.querySelector('#guesses').textContent = guessesRemaining;
     document.querySelector('#wins').textContent = wins;
     document.querySelector('#losses').textContent = losses;
+    document.querySelector('#guess-choice').textContent = guessText;
 
-
-    // // Generates a random Letter for our answer
+    // Generates a random Letter for our answer
     function randomLetter() {
       var chars = "abcdefghijklmnopqurstuvwxyz";
       return chars.substr( Math.floor(Math.random() * 26), 1);
     };
 
-    // // Once a letter key is pressed, the guesses remaining counter reduces by 1, and a letter appears in the "guess-choice" span. 
-    document.querySelector('#guesses').addEventListener('click', function useGuess() {
-      guessesRemaining--;
-      console.log(guessesRemaining);
-      document.querySelector('#guesses').textContent = guessesRemaining;
-    });
-
-    document.querySelector('#wins').addEventListener('click', function() {
-      wins++;
-      console.log(wins);
-      document.querySelector('#wins').textContent = wins;
-
-    });
-
-    document.querySelector('#losses').addEventListener('click', function() {
+    if (guessesRemaining === 0) {
       losses++;
-      console.log(losses);
-      document.querySelector('#losses').textContent = losses;
-    });
-
-    document.querySelector('#answer').addEventListener('click', function() {
-      randomLetter();
-      document.querySelector('#answer').textContent = answer;
-    });
-
-    // if (guessesRemaining === 0) {
-    //   losses++;
+    };
+    
+    // document.onkeyup = function useGuess() {
+    //   guessesRemaining--;
     // };
+
       //alert(answer);
 
       // var userText = document.getElementById("user-choice");
@@ -114,14 +92,7 @@
       //   console.log(computerGuess);
       // };
   
-      // if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")) {
-
-      //   if (userGuess === computerGuess) {
-      //     wins++;
-      //   } else if (userGuess !== computerGuess) {
-      //     losses++;
-      //   }
-      // }
+    
     </script>
   </body>
   </html>
