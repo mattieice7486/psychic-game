@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>The PSYCHIC Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1>The PSYCHIC Game</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Guess what letter I'm thinking of <span id="user-choice"><strong> </strong></span></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Wins: <span id="wins"><strong>0</strong></span></h2>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Losses: <span id="losses"><strong>0</strong></span></h2>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Guesses Remaining: <span id="guesses"><strong>9</strong></span></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Your Guesses so far: <span id="guess-choice"><strong>###</strong></span></h2>
+        </div>
+      </div>      
+    </div>
+  
+    <script type="text/javascript">
+
+      // GAME RULES:
+      // Player has 9 chances to guess a random letter picked by the computer
+      // If the player guesses the correct letter before the chances run out, they earn a win
+      // If the player does not guess the correct letter, then they earn a loss 
+
+      var guessText, guessesRemaining, wins, losses, answer;
+
+          guessText = document.getElementById("guess-choice");
+          guessesRemaining = 9;
+          wins = 3;
+          losses = 3;
+          answer = randomLetter();
+
+    document.onkeyup = function(event) {
+      guessText.textContent = event.key;
+    };
+    
+    // Writes the Variables to the page
+    document.querySelector('#guesses').textContent = guessesRemaining;
+    document.querySelector('#wins').textContent = wins;
+    document.querySelector('#losses').textContent = losses;
+    document.querySelector('#guess-choice').textContent = guessText;
+
+    // Generates a random Letter for our answer
+    function randomLetter() {
+      var chars = "abcdefghijklmnopqurstuvwxyz";
+      return chars.substr( Math.floor(Math.random() * 26), 1);
+    };
+
+    if (guessesRemaining === 0) {
+      losses++;
+    };
+    
+    // document.onkeyup = function useGuess() {
+    //   guessesRemaining--;
+    // };
+
+      //alert(answer);
+
+      // var userText = document.getElementById("user-choice");
+      // var computerChoices = ["r", "p", "s"];
+      // var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      // var computerText = document.getElementById("computer-choice");
+  
+      // // Next, we give JavaScript a function to execute when onkeyup event fires.
+
+      // };
+      // document.onkeyup = function(event) {
+      //   console.log(computerGuess);
+      // };
+  
+    
+    </script>
+  </body>
+  </html>
