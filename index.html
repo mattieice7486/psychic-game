@@ -51,7 +51,8 @@
           var losses = 0;
           var letterChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
           var answer = randomLetter();
-          var userText = document.getElementById("guess-choice");          
+          var userText = document.getElementById("guess-choice");
+          var choicesPicked = [];          
 
       init();
 
@@ -59,14 +60,59 @@
       // guessesRemaining variable reduces by 1
       document.onkeyup = function(event) {
         var userGuess = event.key;
-        if (
-          (userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "h") || (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")
+
+        if (choicesPicked.includes(userGuess)) {
+                alert("letter already picked!") 
+            }
+        else if (
+          (userGuess === "a") || 
+          (userGuess === "b") || 
+          (userGuess === "c") || 
+          (userGuess === "d") || 
+          (userGuess === "e") || 
+          (userGuess === "f") || 
+          (userGuess === "g") || 
+          (userGuess === "h") || 
+          (userGuess === "i") || 
+          (userGuess === "j") || 
+          (userGuess === "k") || 
+          (userGuess === "l") || 
+          (userGuess === "m") || 
+          (userGuess === "n") || 
+          (userGuess === "o") || 
+          (userGuess === "p") || 
+          (userGuess === "q") || 
+          (userGuess === "r") || 
+          (userGuess === "s") || 
+          (userGuess === "t") || 
+          (userGuess === "u") || 
+          (userGuess === "v") || 
+          (userGuess === "w") || 
+          (userGuess === "x") || 
+          (userGuess === "y") || 
+          (userGuess === "z") 
           ) {
               userText.innerText += event.key;
+              choicesPicked.push(userGuess);
               guessesRemaining--;
               document.querySelector('#guesses').textContent = guessesRemaining;
 
-              if (guessesRemaining == 0) {
+
+              if (answer === userGuess)
+                {
+                  choicesPicked = [];
+                  wins++;
+                  document.querySelector('#wins').textContent = wins;
+                  guessesRemaining = 9;
+                  document.querySelector('#guesses').textContent = guessesRemaining;
+                  document.getElementById("guess-choice").textContent = "";
+                  answer = randomLetter();
+                  console.log(answer);
+                  alert("You won! The answer was " + userGuess + ".");
+                }
+                
+                else if (guessesRemaining == 0) {
+                  choicesPicked = [];
                   losses++;
                   document.querySelector('#losses').textContent = losses;
                   guessesRemaining = 9;
@@ -74,17 +120,6 @@
                   document.getElementById("guess-choice").textContent = "";
                   answer = randomLetter();
                   console.log(answer);
-                }
-              else if (answer === userGuess)
-                {
-                  wins++;
-                  document.querySelector('#wins').textContent = wins;
-                  document.getElementById("guess-choice").textContent = "";
-                  guessesRemaining = 9;
-                  document.querySelector('#guesses').textContent = guessesRemaining;
-                  answer = randomLetter();
-                  console.log(answer);
-                  alert("you won!");
                 };
 
             };
@@ -99,7 +134,6 @@
         guessesRemaining = 9;
         wins = 0;
         losses = 0;
-        gamePlaying = true;
         answer = randomLetter();
         console.log(answer);        
       };
