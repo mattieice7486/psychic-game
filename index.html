@@ -5,6 +5,17 @@
     <title>The PSYCHIC Game</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+      body {
+      background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), 
+      url(psychic.jpg);
+      background-size:cover;
+      color: #fff;
+      }
+      h1 {
+        text-align: center;
+      }
+      </style>
   </head>
 
   <body>
@@ -14,7 +25,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h2>Guess what letter I'm thinking of: <span id="answer"><strong></strong></span></h2>
+          <h2>Guess what letter I'm thinking of<br>Press any letter key<span id="answer"><strong></strong></span></h2>
         </div>
       </div>
       <div class="row">
@@ -110,7 +121,7 @@
                   console.log(answer);
                   alert("You won! The answer was " + userGuess + ".");
                 }
-                
+
                 else if (guessesRemaining == 0) {
                   choicesPicked = [];
                   losses++;
