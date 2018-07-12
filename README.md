@@ -1,2 +1,3 @@
 # psychic-game
-javascript game 1
+
+deployed at https://mattieice7486.github.io/psychic-game/
